@@ -1,0 +1,472 @@
+cc_prebuilt_library_static {
+    name: "libippdc_android",
+    host_supported: true,
+    vendor_available: true,
+    target: {
+           android_x86_64: {
+               srcs: [":libippdc_and_64"],
+           },
+           android_x86: {
+               srcs: [":libippdc_and_32"],
+           },
+    },
+}
+
+cc_prebuilt_library_static {
+    name: "libippdc_linux",
+    host_supported: true,
+    vendor_available: true,
+    target: {
+           linux_x86_64: {
+               srcs: [":libippdc_64"],
+           },
+           linux_x86: {
+               srcs: [":libippdc_32"],
+           },
+    },
+}
+
+cc_prebuilt_library_static {
+    name: "libippcore_android",
+    host_supported: true,
+    vendor_available: true,
+    target: {
+           android_x86_64: {
+               srcs: [":libippcore_and_64"],
+           },
+           android_x86: {
+               srcs: [":libippcore_and_32"],
+           }
+    },
+}
+
+cc_prebuilt_library_static {
+    name: "libippcore_linux",
+    host_supported: true,
+    vendor_available: true,
+    target: {
+           linux_x86_64: {
+               srcs: [":libippcore_64"],
+           },
+           linux_x86: {
+               srcs: [":libippcore_32"],
+           }
+    },
+}
+
+cc_prebuilt_library_static {
+    name: "libipps_android",
+    host_supported: true,
+    vendor_available: true,
+    target: {
+           android_x86_64: {
+               srcs: [":libipps_and_64"],
+           },
+           android_x86: {
+               srcs: [":libipps_and_32"],
+           },
+    },
+}
+
+cc_prebuilt_library_static {
+    name: "libipps_linux",
+    host_supported: true,
+    vendor_available: true,
+    target: {
+           linux_x86_64: {
+               srcs: [":libipps_64"],
+           },
+           linux_x86: {
+               srcs: [":libipps_32"],
+           },
+    },
+}
+
+cc_prebuilt_library_static {
+    name: "libippvm_android",
+    host_supported: true,
+    vendor_available: true,
+    target: {
+           android_x86_64: {
+               srcs: [":libippvm_and_64"],
+           },
+           android_x86: {
+               srcs: [":libippvm_and_32"],
+           },
+    },
+}
+
+cc_prebuilt_library_static {
+    name: "libippvm_linux",
+    host_supported: true,
+    vendor_available: true,
+    target: {
+           linux_x86_64: {
+               srcs: [":libippvm_64"],
+           },
+           linux_x86: {
+               srcs: [":libippvm_32"],
+           },
+    },
+}
+
+cc_prebuilt_library_static {
+    name: "libippi_android",
+    host_supported: true,
+    vendor_available: true,
+    target: {
+           android_x86_64: {
+               srcs: [":libippi_and_64"],
+
+           },
+           android_x86: {
+               srcs: [":libippi_and_32"],
+           },
+    },
+}
+
+cc_prebuilt_library_static {
+    name: "libippi_linux",
+    host_supported: true,
+    vendor_available: true,
+    target: {
+           linux_x86_64: {
+               srcs: [":libippi_64"],
+
+           },
+           linux_x86: {
+               srcs: [":libippi_32"],
+           },
+    },
+}
+
+cc_prebuilt_library_static {
+    name: "libippcc_android",
+    host_supported: true,
+    vendor_available: true,
+    target: {
+           android_x86_64: {
+               srcs: [":libippcc_and_64"],
+
+           },
+           android_x86: {
+		srcs: [":libippcc_and_32"],
+           },
+    },
+}
+
+cc_prebuilt_library_static {
+    name: "libippcc_linux",
+    host_supported: true,
+    vendor_available: true,
+    target: {
+           linux_x86_64: {
+               srcs: [":libippcc_64"],
+
+           },
+           linux_x86: {
+		srcs: [":libippcc_32"],
+           },
+    },
+}
+
+ippLibs_android = [
+   "libippdc_android",
+   "libippi_android",
+   "libippcc_android",
+   "libipps_android",
+   "libippvm_android",
+   "libippcore_android",
+]
+
+ippLibs_linux = [
+   "libippdc_linux",
+   "libippi_linux",
+   "libippcc_linux",
+   "libipps_linux",
+   "libippvm_linux",
+   "libippcore_linux",
+]
+
+cc_defaults {
+    name: "libipp_defaults",
+    srcs: [
+       "srcs/main.c",
+       "srcs/ippdc_custom.c",
+       "srcs/ippi_custom.c",
+       "srcs/ipps.c",
+       "srcs/ippvm.c",
+    ],
+    generated_headers: ["ipp_headers"],
+    cflags: ["-Wno-unused-variable"],
+    target: {
+       android: {
+           static_libs: ippLibs_android,
+       },
+       linux: {
+           static_libs: ippLibs_linux,
+       },
+    },
+}
+
+cc_library_shared {
+    name: "libippcustom",
+    host_supported: true,
+    defaults: ["libipp_defaults"],
+}
+
+cc_library_shared {
+    name: "libippcustom_vendor",
+    override_lib_name: "libippcustom",
+    vendor:true,
+    defaults: ["libipp_defaults"],
+}
+
+genrule {
+     name: "ipp_headers",
+     srcs: ["srcs/*.h",],
+     out: [
+           "ipp_autobuf.h",
+           "ippbase.h",
+           "ippcc.h",
+           "ippcc_l.h",
+           "ippcc_tl.h",
+           "ippcc_tl_redefs.h",
+           "ippch.h",
+           "ippcore.h",
+           "ippcore_l.h",
+           "ippcore_tl.h",
+           "ippcv.h",
+           "ippcv_l.h",
+           "ippcv_tl.h",
+           "ippcv_tl_redefs.h",
+           "ippdc.h",
+           "ippdefs.h",
+           "ippdefs_l.h",
+           "ippe.h",
+           "ipp.h",
+           "ippi.h",
+           "ippi_l.h",
+           "ippi_tl.h",
+           "ippi_tl_redefs.h",
+           "ipps.h",
+           "ipps_l.h",
+           "ipptypes.h",
+           "ipptypes_l.h",
+           "ippversion.h",
+           "ippvm.h",
+
+           "iw/iw_core.h",
+           "iw/iw.h",
+           "iw/iw_image_color.h",
+           "iw/iw_image_filter.h",
+           "iw/iw_image.h",
+           "iw/iw_image_op.h",
+           "iw/iw_image_transform.h",
+           "iw/iw_signal.h",
+           "iw/iw_signal_transform.h",
+           "iw/iw_version.h",
+
+           "iw++/iw_core.hpp",
+           "iw++/iw.hpp",
+           "iw++/iw_image_color.hpp",
+           "iw++/iw_image_filter.hpp",
+           "iw++/iw_image.hpp",
+           "iw++/iw_image_op.hpp",
+           "iw++/iw_image_transform.hpp",
+           "iw++/iw_signal.hpp",
+           "iw++/iw_signal_transform.hpp",
+	],
+     cmd: "cp -r /opt/intel/oneapi/ipp/2021.10/include/ipp/* $(genDir)/ && cp $(in) $(genDir)/",
+}
+
+genrule {
+     name: "libippcc_and_32",
+     out: ["ia32/libippcc_and.a"],
+     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib32/libippcc.a $(out)",
+}
+
+genrule {
+     name: "libippcc_32",
+     out: ["ia32/libippcc.a"],
+     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib32/libippcc.a $(out)",
+}
+
+genrule {
+     name: "libippch_32",
+     out: ["ia32/libippch.a"],
+     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib32/libippch.a $(out)",
+}
+
+genrule {
+     name: "libippcore_32",
+     out: ["ia32/libippcore.a"],
+     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib32/libippcore.a $(out)",
+}
+
+genrule {
+     name: "libippcore_and_32",
+     out: ["ia32/libippcore_and.a"],
+     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib32/libippcore.a $(out)",
+}
+
+genrule {
+     name: "libippcv_32",
+     out: ["ia32/libippcv.a"],
+     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib32/libippcv.a $(out)",
+}
+
+genrule {
+     name: "libippdc_32",
+     out: ["ia32/libippdc.a"],
+     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib32/libippdc.a $(out)",
+}
+
+genrule {
+     name: "libippdc_and_32",
+     out: ["ia32/libippdc_and.a"],
+     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib32/libippdc.a $(out)",
+}
+
+genrule {
+     name: "libippe_32",
+     out: ["ia32/libippe.a"],
+     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib32/libippe.a $(out)",
+}
+
+genrule {
+     name: "libippi_32",
+     out: ["ia32/libippi.a"],
+     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib32/libippi.a $(out)",
+}
+
+genrule {
+     name: "libippi_and_32",
+     out: ["ia32/libippi_and.a"],
+     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib32/libippi.a $(out)",
+}
+
+genrule {
+     name: "libipp_iw_32",
+     out: ["ia32/libipp_iw.a"],
+     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib32/libipp_iw.a $(out)",
+}
+
+genrule {
+     name: "libipps_32",
+     out: ["ia32/libipps.a"],
+     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib32/libipps.a $(out)",
+}
+
+genrule {
+     name: "libipps_and_32",
+     out: ["ia32/libipps_and.a"],
+     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib32/libipps.a $(out)",
+}
+
+genrule {
+     name: "libippvm_32",
+     out: ["ia32/libippvm.a"],
+     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib32/libippvm.a $(out)",
+}
+
+genrule {
+     name: "libippvm_and_32",
+     out: ["ia32/libippvm_and.a"],
+     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib32/libippvm.a $(out)",
+}
+
+genrule {
+     name: "libippcc_and_64",
+     out: ["intel64/libippcc_and.a"],
+     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib/libippcc.a $(out)",
+}
+
+genrule {
+     name: "libippcc_64",
+     out: ["intel64/libippcc.a"],
+     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib/libippcc.a $(out)",
+}
+
+genrule {
+     name: "libippch_64",
+     out: ["intel64/libippch.a"],
+     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib/libippch.a $(out)",
+}
+
+genrule {
+     name: "libippcore_64",
+     out: ["intel64/libippcore.a"],
+     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib/libippcore.a $(out)",
+}
+
+genrule {
+     name: "libippcore_and_64",
+     out: ["intel64/libippcore_and.a"],
+     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib/libippcore.a $(out)",
+}
+
+genrule {
+     name: "libippcv_64",
+     out: ["intel64/libippcv.a"],
+     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib/libippcv.a $(out)",
+}
+
+genrule {
+     name: "libippdc_64",
+     out: ["intel64/libippdc.a"],
+     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib/libippdc.a $(out)",
+}
+
+genrule {
+     name: "libippdc_and_64",
+     out: ["intel64/libippdc_and.a"],
+     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib/libippdc.a $(out)",
+}
+
+genrule {
+     name: "libippe_64",
+     out: ["intel64/libippe.a"],
+     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib/libippe.a $(out)",
+}
+genrule {
+     name: "libippi_64",
+     out: ["intel64/libippi.a"],
+     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib/libippi.a $(out)",
+}
+
+genrule {
+     name: "libippi_and_64",
+     out: ["intel64/libippi_and.a"],
+     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib/libippi.a $(out)",
+}
+
+genrule {
+     name: "libipp_iw_64",
+     out: ["intel64/libipp_iw.a"],
+     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib/libipp_iw.a $(out)",
+}
+
+genrule {
+     name: "libipps_64",
+     out: ["intel64/libipps.a"],
+     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib/libipps.a $(out)",
+}
+
+genrule {
+     name: "libipps_and_64",
+     out: ["intel64/libipps_and.a"],
+     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib/libipps.a $(out)",
+}
+
+genrule {
+     name: "libippvm_64",
+     out: ["intel64/libippvm.a"],
+     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib/libippvm.a $(out)",
+}
+
+genrule {
+     name: "libippvm_and_64",
+     out: ["intel64/libippvm_and.a"],
+     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib/libippvm.a $(out)",
+}
