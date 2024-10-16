@@ -1,0 +1,77 @@
+cc_prebuilt_library_static {
+    name: "libmkl_core",
+    host_supported: true,
+    vendor_available: true,
+    target: {
+           android_x86_64: {
+               srcs: [":libmkl_core_64"],
+           },
+           android_x86: {
+               srcs: [":libmkl_core_32"],
+           }
+    },
+}
+
+cc_prebuilt_library_static {
+    name: "libmkl_intel",
+    host_supported: true,
+    vendor_available: true,
+    target: {
+           android_x86_64: {
+               srcs: [":libmkl_intel_64"],
+           },
+           android_x86: {
+               srcs: [":libmkl_intel_32"],
+           }
+    },
+}
+
+cc_prebuilt_library_static {
+    name: "libmkl_sequential",
+    host_supported: true,
+    vendor_available: true,
+    target: {
+           android_x86_64: {
+               srcs: [":libmkl_sequential_64"],
+           },
+           android_x86: {
+               srcs: [":libmkl_sequential_32"],
+           }
+    },
+}
+
+genrule {
+     name: "libmkl_core_64",
+     out: ["intel64/libmkl_core.a"],
+     cmd: "cp /opt/intel/oneapi/mkl/2021.1.1/lib/intel64/libmkl_core.a $(out)",
+}
+
+genrule {
+     name: "libmkl_intel_64",
+     out: ["intel64/libmkl_intel_lp64.a"],
+     cmd: "cp /opt/intel/oneapi/mkl/2021.1.1/lib/intel64/libmkl_intel_lp64.a $(out)",
+}
+
+genrule {
+     name: "libmkl_sequential_64",
+     out: ["intel64/libmkl_sequential.a"],
+     cmd: "cp /opt/intel/oneapi/mkl/2021.1.1/lib/intel64/libmkl_sequential.a $(out)",
+}
+
+genrule {
+     name: "libmkl_core_32",
+     out: ["ia32/libmkl_core.a"],
+     cmd: "cp /opt/intel/oneapi/mkl/2021.1.1/lib/ia32/libmkl_core.a $(out)",
+}
+
+genrule {
+     name: "libmkl_intel_32",
+     out: ["ia32/libmkl_intel.a"],
+     cmd: "cp /opt/intel/oneapi/mkl/2021.1.1/lib/ia32/libmkl_intel.a $(out)",
+}
+
+genrule {
+     name: "libmkl_sequential_32",
+     out: ["ia32/libmkl_sequential.a"],
+     cmd: "cp /opt/intel/oneapi/mkl/2021.1.1/lib/ia32/libmkl_sequential.a $(out)",
+}
