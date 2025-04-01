@@ -232,7 +232,6 @@ genrule {
            "ippcc_l.h",
            "ippcc_tl.h",
            "ippcc_tl_redefs.h",
-           "ippch.h",
            "ippcore.h",
            "ippcore_l.h",
            "ippcore_tl.h",
@@ -277,196 +276,184 @@ genrule {
            "iw++/iw_signal.hpp",
            "iw++/iw_signal_transform.hpp",
 	],
-     cmd: "cp -r /opt/intel/oneapi/ipp/2021.10/include/ipp/* $(genDir)/ && cp $(in) $(genDir)/",
+     cmd: "cp -r /opt/intel/oneapi/ipp/2022.0/include/ipp/* $(genDir)/ && cp $(in) $(genDir)/",
 }
 
 genrule {
      name: "libippcc_and_32",
      out: ["ia32/libippcc_and.a"],
-     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib32/libippcc.a $(out)",
+     cmd: "cp /opt/intel/oneapi/ipp/2022.0/lib32/libippcc.a $(out)",
 }
 
 genrule {
      name: "libippcc_32",
      out: ["ia32/libippcc.a"],
-     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib32/libippcc.a $(out)",
-}
-
-genrule {
-     name: "libippch_32",
-     out: ["ia32/libippch.a"],
-     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib32/libippch.a $(out)",
+     cmd: "cp /opt/intel/oneapi/ipp/2022.0/lib32/libippcc.a $(out)",
 }
 
 genrule {
      name: "libippcore_32",
      out: ["ia32/libippcore.a"],
-     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib32/libippcore.a $(out)",
+     cmd: "cp /opt/intel/oneapi/ipp/2022.0/lib32/libippcore.a $(out)",
 }
 
 genrule {
      name: "libippcore_and_32",
      out: ["ia32/libippcore_and.a"],
-     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib32/libippcore.a $(out)",
+     cmd: "cp /opt/intel/oneapi/ipp/2022.0/lib32/libippcore.a $(out)",
 }
 
 genrule {
      name: "libippcv_32",
      out: ["ia32/libippcv.a"],
-     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib32/libippcv.a $(out)",
+     cmd: "cp /opt/intel/oneapi/ipp/2022.0/lib32/libippcv.a $(out)",
 }
 
 genrule {
      name: "libippdc_32",
      out: ["ia32/libippdc.a"],
-     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib32/libippdc.a $(out)",
+     cmd: "cp /opt/intel/oneapi/ipp/2022.0/lib32/libippdc.a $(out)",
 }
 
 genrule {
      name: "libippdc_and_32",
      out: ["ia32/libippdc_and.a"],
-     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib32/libippdc.a $(out)",
+     cmd: "cp /opt/intel/oneapi/ipp/2022.0/lib32/libippdc.a $(out)",
 }
 
 genrule {
      name: "libippe_32",
      out: ["ia32/libippe.a"],
-     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib32/libippe.a $(out)",
+     cmd: "cp /opt/intel/oneapi/ipp/2022.0/lib32/libippe.a $(out)",
 }
 
 genrule {
      name: "libippi_32",
      out: ["ia32/libippi.a"],
-     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib32/libippi.a $(out)",
+     cmd: "cp /opt/intel/oneapi/ipp/2022.0/lib32/libippi.a $(out)",
 }
 
 genrule {
      name: "libippi_and_32",
      out: ["ia32/libippi_and.a"],
-     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib32/libippi.a $(out)",
+     cmd: "cp /opt/intel/oneapi/ipp/2022.0/lib32/libippi.a $(out)",
 }
 
 genrule {
      name: "libipp_iw_32",
      out: ["ia32/libipp_iw.a"],
-     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib32/libipp_iw.a $(out)",
+     cmd: "cp /opt/intel/oneapi/ipp/2022.0/lib32/libipp_iw.a $(out)",
 }
 
 genrule {
      name: "libipps_32",
      out: ["ia32/libipps.a"],
-     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib32/libipps.a $(out)",
+     cmd: "cp /opt/intel/oneapi/ipp/2022.0/lib32/libipps.a $(out)",
 }
 
 genrule {
      name: "libipps_and_32",
      out: ["ia32/libipps_and.a"],
-     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib32/libipps.a $(out)",
+     cmd: "cp /opt/intel/oneapi/ipp/2022.0/lib32/libipps.a $(out)",
 }
 
 genrule {
      name: "libippvm_32",
      out: ["ia32/libippvm.a"],
-     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib32/libippvm.a $(out)",
+     cmd: "cp /opt/intel/oneapi/ipp/2022.0/lib32/libippvm.a $(out)",
 }
 
 genrule {
      name: "libippvm_and_32",
      out: ["ia32/libippvm_and.a"],
-     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib32/libippvm.a $(out)",
+     cmd: "cp /opt/intel/oneapi/ipp/2022.0/lib32/libippvm.a $(out)",
 }
 
 genrule {
      name: "libippcc_and_64",
      out: ["intel64/libippcc_and.a"],
-     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib/libippcc.a $(out)",
+     cmd: "cp /opt/intel/oneapi/ipp/2022.0/lib/libippcc.a $(out)",
 }
 
 genrule {
      name: "libippcc_64",
      out: ["intel64/libippcc.a"],
-     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib/libippcc.a $(out)",
-}
-
-genrule {
-     name: "libippch_64",
-     out: ["intel64/libippch.a"],
-     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib/libippch.a $(out)",
+     cmd: "cp /opt/intel/oneapi/ipp/2022.0/lib/libippcc.a $(out)",
 }
 
 genrule {
      name: "libippcore_64",
      out: ["intel64/libippcore.a"],
-     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib/libippcore.a $(out)",
+     cmd: "cp /opt/intel/oneapi/ipp/2022.0/lib/libippcore.a $(out)",
 }
 
 genrule {
      name: "libippcore_and_64",
      out: ["intel64/libippcore_and.a"],
-     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib/libippcore.a $(out)",
+     cmd: "cp /opt/intel/oneapi/ipp/2022.0/lib/libippcore.a $(out)",
 }
 
 genrule {
      name: "libippcv_64",
      out: ["intel64/libippcv.a"],
-     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib/libippcv.a $(out)",
+     cmd: "cp /opt/intel/oneapi/ipp/2022.0/lib/libippcv.a $(out)",
 }
 
 genrule {
      name: "libippdc_64",
      out: ["intel64/libippdc.a"],
-     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib/libippdc.a $(out)",
+     cmd: "cp /opt/intel/oneapi/ipp/2022.0/lib/libippdc.a $(out)",
 }
 
 genrule {
      name: "libippdc_and_64",
      out: ["intel64/libippdc_and.a"],
-     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib/libippdc.a $(out)",
+     cmd: "cp /opt/intel/oneapi/ipp/2022.0/lib/libippdc.a $(out)",
 }
 
 genrule {
      name: "libippe_64",
      out: ["intel64/libippe.a"],
-     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib/libippe.a $(out)",
+     cmd: "cp /opt/intel/oneapi/ipp/2022.0/lib/libippe.a $(out)",
 }
 genrule {
      name: "libippi_64",
      out: ["intel64/libippi.a"],
-     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib/libippi.a $(out)",
+     cmd: "cp /opt/intel/oneapi/ipp/2022.0/lib/libippi.a $(out)",
 }
 
 genrule {
      name: "libippi_and_64",
      out: ["intel64/libippi_and.a"],
-     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib/libippi.a $(out)",
+     cmd: "cp /opt/intel/oneapi/ipp/2022.0/lib/libippi.a $(out)",
 }
 
 genrule {
      name: "libipp_iw_64",
      out: ["intel64/libipp_iw.a"],
-     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib/libipp_iw.a $(out)",
+     cmd: "cp /opt/intel/oneapi/ipp/2022.0/lib/libipp_iw.a $(out)",
 }
 
 genrule {
      name: "libipps_64",
      out: ["intel64/libipps.a"],
-     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib/libipps.a $(out)",
+     cmd: "cp /opt/intel/oneapi/ipp/2022.0/lib/libipps.a $(out)",
 }
 
 genrule {
      name: "libipps_and_64",
      out: ["intel64/libipps_and.a"],
-     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib/libipps.a $(out)",
+     cmd: "cp /opt/intel/oneapi/ipp/2022.0/lib/libipps.a $(out)",
 }
 
 genrule {
      name: "libippvm_64",
      out: ["intel64/libippvm.a"],
-     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib/libippvm.a $(out)",
+     cmd: "cp /opt/intel/oneapi/ipp/2022.0/lib/libippvm.a $(out)",
 }
 
 genrule {
      name: "libippvm_and_64",
      out: ["intel64/libippvm_and.a"],
-     cmd: "cp /opt/intel/oneapi/ipp/2021.10/lib/libippvm.a $(out)",
+     cmd: "cp /opt/intel/oneapi/ipp/2022.0/lib/libippvm.a $(out)",
 }
